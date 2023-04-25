@@ -11,7 +11,7 @@ pipeline {
             // Build the Maven application
             steps {
                 script {
-                    def mvnHome = tool name: 'maven3', type: 'maven'
+                    def mvnHome = tool name: 'maven', type: 'maven'
                     sh "${mvnHome}/opt/apache-maven-3.9.1/bin/mvn clean install"
                 }
             }

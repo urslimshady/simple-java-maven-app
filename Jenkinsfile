@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def mvnHome = tool name: 'maven3', type: 'maven'
-                    sh "${mvnHome}/opt/apache-maven-3.9.1/bin/mvn clean install"
+                    sh "${mvnHome}/bin/mvn clean install"
                 }
             }
         }

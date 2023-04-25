@@ -16,11 +16,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Copy build artifacts to remote server
-                sh 'scp target/your-app.jar root@172.190.19.165:/home/simple-maven-app/'
+                sh 'scp target/your-app.jar shady@172.190.19.165:/home/simple-maven-app/'
 
                 // Trigger build process on remote server
-                sshagent(['secret.key']) {
-                    sh 'ssh root@172.190.19.165 "cd /home/simple-maven-app; java -jar your-app.jar"'
+                sshagent(['maven-app-keys']) {
+                    sh 'ssh shady@172.190.19.165 "cd /home/simple-maven-app; java -jar your-app.jar"'
                 }
             }
         }

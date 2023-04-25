@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Maven application
-                sh 'mvn clean install'
+                sh 'mvn -f /opt/apache-maven-3.9.1 clean install'
             }
         }
         stage('Deploy') {

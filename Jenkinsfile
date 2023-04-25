@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+	mvnHome = tool 'maven'
+	}
     stages {
         stage('Checkout') {
             steps {
@@ -10,10 +13,7 @@ pipeline {
         stage('Build') {
             // Build the Maven application
             steps {
-                script {
-                    def mvnHome = tool name: 'maven3', type: 'maven'
-                    sh "${mvnHome}/bin/mvn clean install"
-                }
+                    sh "${mvnHome}/bin/mvn clean install"                
             }
         }
         stage('Deploy') {

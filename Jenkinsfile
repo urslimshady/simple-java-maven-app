@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	mvnHome = tool 'maven'
+	def mvnHome = tool 'maven3'
 	}
     stages {
         stage('Checkout') {

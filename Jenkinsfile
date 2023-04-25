@@ -10,7 +10,8 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Maven application
-                sh 'mvn -f /opt/apache-maven-3.9.1 clean install'
+		def mvnTool = tool 'Maven'
+                sh '${mvnTool}/opt/apache-maven-3.9.1 clean install'
             }
         }
         stage('Deploy') {

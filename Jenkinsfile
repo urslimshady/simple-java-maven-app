@@ -19,8 +19,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Copy build artifacts to remote server
+		    sshagent(credentials: ['app-server-pass']) {
                 sh 'scp -o StrictHostKeyChecking=no target/your-app.jar shady@172.190.19.165:/home/simple-maven-app/'
-
+		    }
                 // Trigger build process on remote server
                 sshagent(credentials: ['app-server-pass']) {
                     sh 'ssh -o StrictHostKeyChecking=no shady@172.190.19.165 "cd /home/simple-maven-app; java -jar your-app.jar"'

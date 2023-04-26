@@ -2,8 +2,6 @@ pipeline {
     agent any
     environment {
         def mvnHome = tool 'maven3'
-        def sshUsername = 'shady' // Update with your SSH username
-        def sshPassword = 'Rrohit143@!@#$' // Update with your SSH password
     }
     stages {
         stage('Checkout') {

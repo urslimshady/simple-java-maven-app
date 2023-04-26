@@ -1,8 +1,10 @@
 pipeline {
     agent any
     environment {
-	def mvnHome = tool 'maven3'
-	}
+        def mvnHome = tool 'maven3'
+        def sshUsername = 'urslimshady' // Update with your SSH username
+        def sshPassword = 'Rrohit143@!@#$' // Update with your SSH password
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -13,21 +15,19 @@ pipeline {
         stage('Build') {
             // Build the Maven application
             steps {
-                    sh "${mvnHome}/bin/mvn clean install"                
+                sh "${mvnHome}/bin/mvn clean install"                
             }
         }
         stage('Deploy') {
             steps {
-                // Copy build artifacts to remote server
-		    sshagent(credentials: ['app-server-pass']) {
-                sh 'scp -o StrictHostKeyChecking=no target/your-app.jar shady@172.190.19.165:/home/simple-maven-app/'
-		    }
-                // Trigger build process on remote server
+                // Copy build artifacts to remote server using SCP
+                sh "scp -o StrictHostKeyChecking=no target/your-app.jar ${sshUsername}:${sshPassword}@172.190.19.165:/home/simple-maven-app/"
+
+                // Trigger build process on remote server using SSH
                 sshagent(credentials: ['app-server-pass']) {
-                    sh 'ssh -o StrictHostKeyChecking=no shady@172.190.19.165 "cd /home/simple-maven-app; java -jar your-app.jar"'
+                    sh "sshpass -p '${sshPassword}' ssh -o StrictHostKeyChecking=no ${sshUsername}@172.190.19.165 'cd /home/simple-maven-app; java -jar your-app.jar'"
                 }
             }
         }
     }
 }
-

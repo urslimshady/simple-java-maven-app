@@ -19,7 +19,7 @@ pipeline {
        stage('Deploy') {
     steps {
         // Copy build artifacts to remote server using IP address and username/password
-       withCredentials([usernamePassword(credentialsId: 'my-credentials-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+       withCredentials([usernamePassword(credentialsId: 'app-server-pass', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             // Use scp command to copy the JAR file to the remote server
             sh "scp -o StrictHostKeyChecking=no target/your-app.jar ${USERNAME}:${PASSWORD}@172.190.19.165:/home/simple-maven-app/"
         }

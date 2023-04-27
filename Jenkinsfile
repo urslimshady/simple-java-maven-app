@@ -26,7 +26,7 @@ pipeline {
 
         // Trigger build process on remote server using IP address and username/password
         sshagent(credentials: ['application-server-creds']) {
-            sh '''ssh azureuser@52.136.127.164 
+            sh '''ssh azureuser@52.136.127.164 -vvv
                 export JAVA_HOME=/opt/jdk-17.0.7
                 export PATH=$JAVA_HOME/bin:$PATH
                 cd /home/azureuser/simple-java-maven-app/new

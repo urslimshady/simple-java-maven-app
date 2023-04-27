@@ -29,8 +29,9 @@ pipeline {
             sh '''ssh azureuser@52.136.127.164 -vvv
                 export JAVA_HOME=/opt/jdk-17.0.7
                 export PATH=$JAVA_HOME/bin:$PATH
+                echo 'hello'
                 cd /home/azureuser/simple-java-maven-app/new
-                java -jar my-app-1.0-SNAPSHOT.jar'''
+                // java -jar my-app-1.0-SNAPSHOT.jar'''
              }
           }
         }

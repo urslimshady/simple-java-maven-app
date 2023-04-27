@@ -30,7 +30,7 @@ pipeline {
                 export JAVA_HOME=/opt/jdk-17.0.7
                 export PATH=$JAVA_HOME/bin:$PATH
                 echo 'hello'
-                cd /home/azureuser/simple-java-maven-app/new && touch hello-rohit
+                touch hello-rohit
                 '''
              }
           }

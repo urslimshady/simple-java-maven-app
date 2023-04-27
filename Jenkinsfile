@@ -21,7 +21,7 @@ pipeline {
         // Copy build artifacts to remote server using IP address and username/password
         sshagent(credentials: ['application-server-creds']) {
             // Use scp command to copy the JAR file to the remote server
-            sh "scp target/your-app.jar  azureuser@52.136.127.164:/home/simple-maven-app/"
+            sh "scp target/your-app.jar azureuser@52.136.127.164:/home/simple-maven-app/"
         }
 
         // Trigger build process on remote server using IP address and username/password

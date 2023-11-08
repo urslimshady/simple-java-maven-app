@@ -3,69 +3,26 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany.app</groupId>
   <artifactId>my-app</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging> <!-- Change packaging to "war" -->
   <version>1.0-SNAPSHOT</version>
   <name>my-app</name>
   <url>https://maven.apache.org</url>
   <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.2</version>
-      <scope>test</scope>
-    </dependency>
+    <!-- Add your dependencies here -->
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.11.0</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
+      <!-- Remove the maven-jar-plugin configuration, as it's not needed for WAR -->
       <plugin>
-        <!-- Build an executable JAR -->
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
+        <artifactId>maven-war-plugin</artifactId> <!-- Use maven-war-plugin for WAR packaging -->
         <version>3.3.0</version>
         <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.mycompany.app.App</mainClass>
-            </manifest>
-          </archive>
+          <webXml>src/main/webapp/WEB-INF/web.xml</webXml> <!-- Set path to web.xml -->
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>enforce-maven</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>[3.8.6,)</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>[11,)</version>
-                </requireJavaVersion>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
